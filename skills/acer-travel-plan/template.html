@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{TITLE}}</title>
+  <style>
+    :root {
+      --page-bg: #f3f3f0;
+      --paper: #ffffff;
+      --paper-soft: #fafaf7;
+      --ink: #1f1f1f;
+      --muted: #6a6a64;
+      --line: #e6e4dc;
+      --accent: #c9a84f;
+      --accent-deep: #7a9a2e;
+      --hero-ink: #ffffff;
+      --photo-radius: 8px;
+      --shadow-card: 0 4px 18px rgba(30, 30, 28, 0.06);
+      --shadow-photo: 0 4px 16px rgba(30, 30, 28, 0.10);
+      --shadow-photo-hover: 0 10px 24px rgba(30, 30, 28, 0.14);
+      --lift: translateY(-3px);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      background: var(--page-bg);
+      color: var(--ink);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 20px 20px 64px;
+    }
+    .hero {
+      background:
+        linear-gradient(105deg, rgba(28, 28, 28, 0.78) 0%, rgba(28, 28, 28, 0.52) 55%, rgba(40, 38, 34, 0.45) 100%),
+        linear-gradient(135deg, #4a4a48 0%, #a8a296 100%);
+      color: var(--hero-ink);
+      padding: 28px 30px 30px;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-bottom: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #e8f2c4;
+      border-left: 3px solid var(--accent-deep);
+      padding-left: 10px;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      margin: 0 0 12px;
+      font-size: 32px;
+      line-height: 1.22;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+    .hero .subtitle {
+      margin: 0;
+      max-width: 640px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 400;
+    }
+    .trip-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-top: 0;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-card);
+    }
+    .trip-fact {
+      padding: 16px 18px 18px;
+      border-right: 1px solid var(--line);
+    }
+    .trip-fact:last-child { border-right: 0; }
+    .trip-fact .label {
+      display: block;
+      margin-bottom: 6px;
+      color: #8a8a82;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .trip-fact .value {
+      display: block;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .trip-fact .value-sub {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .climate-tips {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      background: var(--paper-soft);
+      border: 1px solid var(--line);
+      margin: 0 0 22px;
+      box-shadow: none;
+    }
+    .climate-tip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-right: 1px solid var(--line);
+    }
+    .climate-tip:last-child { border-right: 0; }
+    .climate-tip .tip-icon {
+      flex: 0 0 auto;
+      color: #a4873a;
+      line-height: 0;
+    }
+    .climate-tip .tip-icon svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .climate-tip .tip-text { min-width: 0; }
+    .climate-tip .tip-label {
+      display: block;
+      margin-bottom: 1px;
+      color: #8a8a82;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .climate-tip .tip-value {
+      display: block;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .section {
+      background: var(--paper);
+      padding: 32px 28px;
+      margin-bottom: 22px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-card);
+    }
+    .section-title {
+      text-align: center;
+      margin: 0 0 14px;
+    }
+    .section-title .icon {
+      color: #a4873a;
+      font-size: 20px;
+      line-height: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 24px;
+    }
+    .section-title .icon svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+      stroke: currentColor;
+    }
+    .section-title h2 {
+      margin: 6px 0 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+    }
+    .section-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: "";
+      width: 72px;
+      height: 1px;
+      background: #e0ddd3;
+    }
+    .section-title p {
+      margin: 4px 0 0;
+      color: #8a8a82;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+    .lead {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 auto 20px;
+      max-width: 920px;  /* the wider page: one line for a section's short intro */
+      text-align: center;
+      line-height: 1.6;
+    }
+    .poster {
+      width: 100%;
+      min-height: 260px;
+      background: linear-gradient(135deg, #f7efdf 0%, #ead9b8 55%, #e2d2ad 100%);
+      border: 1px solid #eadfca;
+      margin-top: 8px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--photo-radius);
+      box-shadow: var(--shadow-photo);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .poster.has-photo {
+      overflow: hidden;
+      border-radius: var(--photo-radius);
+    }
+    .poster.has-photo > img,
+    .poster > img {
+      border-radius: var(--photo-radius);
+    }
+    .poster.has-photo:hover {
+      transform: var(--lift);
+      box-shadow: var(--shadow-photo-hover);
+    }
+    .poster > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 0;
+      filter: brightness(1.05) contrast(1.03) saturate(1.06);
+    }
+    .poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: var(--photo-radius);
+      background:
+        radial-gradient(circle at 18% 20%, rgba(255,255,255,0.5), transparent 26%),
+        linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.18));
+      pointer-events: none;
+    }
+    .poster.has-photo::after {
+      background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.18));
+    }
+    .poster-caption {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      z-index: 2;
+      color: #6b5830;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      font-weight: 600;
+      text-transform: uppercase;
+      text-shadow: none;
+    }
+    .poster.has-photo .poster-caption {
+      color: #fff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    .poster.mosaic {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 10px;
+      background: none;
+      border: 0;
+      min-height: 440px;  /* the wider page: less of each photo cut away */
+      overflow: visible;
+      box-shadow: none;
+      border-radius: 0;
+      transition: none;
+    }
+    .poster.mosaic:hover {
+      transform: none;
+      box-shadow: none;
+    }
+    .poster.mosaic::after { display: none; }
+    .mosaic-main,
+    .mosaic-side > div {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f6eedf 0%, #e8d7b4 100%);
+      border: 0;
+      border-radius: var(--photo-radius);
+      min-height: 140px;
+      box-shadow: var(--shadow-photo);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+    .mosaic-main:hover,
+    .mosaic-side > div:hover {
+      transform: var(--lift);
+      box-shadow: var(--shadow-photo-hover);
+      z-index: 2;
+    }
+    .mosaic-main img,
+    .mosaic-side > div img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      z-index: 0;
+      border-radius: var(--photo-radius);
+      filter: brightness(1.06) contrast(1.04) saturate(1.08);
+    }
+    .mosaic-main::after,
+    .mosaic-side > div::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      border-radius: var(--photo-radius);
+      background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.12));
+      pointer-events: none;
+    }
+    .mosaic-main.has-photo::after,
+    .mosaic-side > div.has-photo::after {
+      background: linear-gradient(180deg, rgba(0,0,0,0.00), rgba(0,0,0,0.14));
+    }
+    .mosaic-side {
+      display: grid;
+      gap: 10px;
+      grid-template-rows: 1fr 1fr;
+    }
+    /* Lined up with the photos' left edge below, a little room before them. */
+    ul.feature-list {
+      margin: 0 0 18px;
+      padding-left: 1.25em;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    ul.feature-list li {
+      margin: 0 0 10px;
+      padding-left: 2px;
+      line-height: 1.55;
+    }
+    ul.feature-list li:last-child { margin-bottom: 0; }
+    .info-list { display: grid; gap: 0; }
+    .info-list.meal-list { gap: 0; margin-top: 20px; }
+    .info-item {
+      padding: 16px 0;
+      border-bottom: 1px solid #eceae3;
+    }
+    .info-item:first-child { padding-top: 4px; }
+    .info-item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    /* The meals: three cards side by side, the photo on top. */
+    .info-list.meal-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .info-item.meal-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0;
+      border-bottom: 0;
+    }
+    .info-item.meal-row .meta { display: none; }  /* the area again: the map link under it says it */
+    /* A meal's or stay's address: the same map line as the itinerary's facts. */
+    .info-item .meta { display: none; }
+    .slot-info.place-map { width: fit-content; max-width: 100%; margin: 12px 0 0; padding: 7px 14px 7px 12px; }
+    /* A meal's dish described: three lines, then "more". */
+    .meal-row .slot-summary { margin: 8px 0 0; color: #45453f; font-size: 13px; line-height: 1.6; }
+    .meal-row .slot-summary.clamped { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .info-body .slot-more-btn { display: block; margin-left: auto; }
+    /* The stays: cards side by side, a house before the name, the map line at the bottom. */
+    .info-list.stay-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 20px; }
+    .stay-list .info-item {
+      display: flex; flex-direction: column; padding: 18px 20px; border: 1px solid var(--line);
+      border-radius: 10px; background: #fbfaf6; box-shadow: var(--shadow-card);
+    }
+    .stay-list .info-item:first-child, .stay-list .info-item:last-child { padding: 18px 20px; border-bottom: 1px solid var(--line); }
+    .stay-list .name { display: flex; align-items: center; gap: 8px; font-size: 16px; }
+    .stay-list .name::before {
+      content: ""; width: 18px; height: 18px; flex: none; background-color: #7a6a2c;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M2.2 7.4L8 2.6l5.8 4.8M3.8 6.2v7.4h8.4V6.2M6.6 13.6V9.8h2.8v3.8'/%3E%3C/svg%3E") center / contain no-repeat;
+              mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='black' stroke-width='1.4' stroke-linejoin='round'%3E%3Cpath d='M2.2 7.4L8 2.6l5.8 4.8M3.8 6.2v7.4h8.4V6.2M6.6 13.6V9.8h2.8v3.8'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+    .stay-list .note { margin: 6px 0 14px; }
+    .stay-list .place-map { margin-top: auto; }
+    /* The three cards' map lines level at the bottom. */
+    .info-item.meal-row .info-body { flex: 1 1 auto; display: flex; flex-direction: column; }
+    .info-item.meal-row .place-map { margin-top: auto; }
+    .info-item.meal-row .info-body > :nth-last-child(2) { margin-bottom: 12px; }
+    .info-item.meal-row .name { font-size: 16px; }
+    .info-item.meal-row .info-body { min-width: 0; }
+    .meal-photo {
+      order: -1;
+      width: 100%;
+      height: 210px;
+      position: relative;
+      overflow: hidden;
+      border: 0;
+      border-radius: var(--photo-radius);
+      background: #f0ebe0;
+      box-shadow: var(--shadow-photo);
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+      justify-self: end;
+    }
+    .meal-photo:hover {
+      transform: var(--lift);
+      box-shadow: var(--shadow-photo-hover);
+    }
+    .meal-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--photo-radius);
+      filter: brightness(1.05) contrast(1.03) saturate(1.06);
+    }
+    .info-item .name {
+      margin: 0 0 5px;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .info-item .meta {
+      margin: 0 0 6px;
+      color: #a4873a;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .address {
+      margin: 0 0 8px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .address a {
+      color: #2f6aae;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(47, 106, 174, 0.35);
+      word-break: break-word;
+    }
+    .address a:hover {
+      color: #1e4f8a;
+      border-bottom-color: rgba(30, 79, 138, 0.55);
+    }
+    .info-item .note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .days {
+      display: grid;
+      gap: 18px;
+      min-width: 0;
+    }
+    /* The whole trip, one line a day; a line takes the reader to its day. */
+    .overview { width: 100%; border-collapse: collapse; }
+    .overview tr { border-top: 1px solid #eeebe2; cursor: pointer; }
+    .overview tr:hover { background: #faf8f1; }
+    .overview td { padding: 12px 10px; vertical-align: top; font-size: 14px; }
+    .overview .ov-n { width: 70px; color: #c9a84f; font-weight: 800; font-size: 20px; line-height: 1; }
+    .overview .ov-n small { display: block; margin-bottom: 3px; color: #a4873a; font-size: 9.5px; letter-spacing: .16em; }
+    .overview .ov-d { width: 110px; color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .overview .ov-t { width: 200px; font-weight: 700; }
+    .overview .ov-r { color: #4f4d45; }
+    .overview .ov-r i { font-style: normal; margin: 0 6px; color: #b9a76a; }
+    .overview .ov-tag { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; font-style: normal;
+      font-weight: 500; font-size: 11.5px; vertical-align: 1px; white-space: nowrap; background: #f5efdf; color: #8a6c26; }
+    .overview .ov-arrive { background: #eef3e2; color: #4a5c22; }
+    .overview .ov-leave { background: #efebe4; color: #6c6553; }
+    .overview .ov-s { width: 120px; color: var(--muted); font-size: 13px; white-space: nowrap; }
+    .overview .ov-s b { color: #4a5c22; font-weight: 600; }
+    /* The days down the left, following the reader: the day on screen is marked (script below). */
+    .days-wrap { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 22px; align-items: start; }
+    /* A long trip's list scrolls: a thin bar, shown only while the pointer is over the list. */
+    .day-nav { position: sticky; top: 28px; padding: 6px 0 12px; max-height: calc(100vh - 56px); overflow-y: auto;
+               scrollbar-width: thin; scrollbar-color: transparent transparent; }
+    .day-nav:hover { scrollbar-color: #d3cab0 transparent; }
+    .day-nav::-webkit-scrollbar { width: 4px; }
+    .day-nav::-webkit-scrollbar-button { display: none; }
+    .day-nav::-webkit-scrollbar-thumb { background: transparent; border-radius: 4px; }
+    .day-nav:hover::-webkit-scrollbar-thumb { background: #d3cab0; }
+    .day-nav-title { margin: 0 0 12px; color: #a4873a; font-size: 12px; font-weight: 800; letter-spacing: .16em; }
+    .day-nav-list { position: relative; display: flex; flex-direction: column; gap: 2px; }
+    /* A thin rail through the days' dots. */
+    .day-nav-list::before { content: ""; position: absolute; left: 4px; top: 10px; bottom: 10px; width: 1px; background: #e2dccb; }
+    .day-nav a { position: relative; display: grid; grid-template-columns: 9px auto; column-gap: 11px; padding: 5px 0;
+                 color: #9a958a; text-decoration: none; white-space: nowrap; }
+    .day-nav .dot { width: 9px; height: 9px; margin-top: 6px; border-radius: 50%; border: 1.5px solid #d3cab0;
+                    background: #fff; transition: background .2s ease, border-color .2s ease, box-shadow .2s ease; }
+    .day-nav .d { font-size: 14px; font-weight: 700; letter-spacing: .08em; }
+    .day-nav .dt { grid-column: 2; font-size: 12.5px; color: #b0aa9c; }
+    .day-nav a:hover .d { color: #4a5c22; }
+    .day-nav a.on .dot { background: #7a9a2e; border-color: #7a9a2e; box-shadow: 0 0 0 3px rgba(122, 154, 46, .18); }
+    .day-nav a.on .d { color: #4a5c22; }
+    .day-nav a.on .dt { color: #6b6a5f; }
+    .days-wrap:not(:has(.day-nav a)) { grid-template-columns: minmax(0, 1fr); }
+    .days-wrap:not(:has(.day-nav a)) .day-nav { display: none; }
+    /* A rounded card with a gold edge on the left: the edge follows the corners, narrow at the top
+       and bottom, full in between. */
+    .day {
+      border: 1px solid var(--line);
+      border-left: 4px solid #c9a84f;
+      border-radius: 12px;
+      background: var(--paper);
+      padding: 0 20px 12px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .day-head {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px 14px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin: 0 -20px 14px;
+      padding: 14px 20px 14px 22px;
+      background: #f7f4ea;
+      border-bottom: 1px solid #ebe6d8;
+      box-shadow: none;
+    }
+    /* The day's opening: a big number, then date, title and its places in order. */
+    .day-head { display: grid !important; grid-template-columns: 78px minmax(0, 1fr); align-items: center; gap: 0 !important; }
+    .day-num { font-size: 40px; font-weight: 800; line-height: 1; color: #c9a84f; letter-spacing: -.02em; }
+    .day-num small { display: block; margin-bottom: 4px; font-size: 10px; font-weight: 800; letter-spacing: .16em; color: #a4873a; }
+    .day-text .day-date { display: block; color: #6b6a5f; font-size: 13px; font-weight: 600; }
+    .day-text .day-title { margin: 2px 0 0; font-size: 18px; }
+    .day-route { margin: 6px 0 0; color: #6b6a5f; font-size: 13px; line-height: 1.6; }
+    .day-route i { font-style: normal; margin: 0 7px; color: #b9a76a; }
+    .slot-meta { margin: 4px 0 0; color: #6b6a5f; font-size: 12px; }
+    .slot-meta .slot-hours { font-weight: 700; color: #4a5c22; }
+    .slot-meta a.slot-source { color: #4a5c22; }
+    /* What the Journey found about the place (details.py): a short description, then facts. */
+    .slot-summary { margin: 6px 0 0; color: #45453f; font-size: 13px; line-height: 1.6; }
+    .slot-pick { margin: 8px 0 0; font-size: 13px; color: #2f2d28; }
+    .slot-lang { margin-right: 6px; padding: 0 5px; border: 1px solid #d8d4c6; border-radius: 4px; color: #8a8576; font-size: 10px; letter-spacing: .04em; vertical-align: 1px; }
+    /* Getting there or resting: a lighter line, not a place with its details missing. */
+    .slot:has(> .slot-plain) { padding: 10px 0; }
+    .slot-plain .place { font-size: 14px; font-weight: 500; color: #6b685f; }
+    .slot-plain .address { display: none; }
+    .slot-pick b { margin-right: 6px; padding: 1px 6px; border-radius: 4px; background: #efe9d6; color: #7a6a2c; font-size: 11px; letter-spacing: .04em; }
+    .slot-facts { margin: 4px 0 0; color: #6b6a5f; font-size: 12px; line-height: 1.6; }
+    .slot-warn { color: #a5482f; font-weight: 600; }
+    .slot-official { margin: 6px 0 0; padding: 6px 10px; border-left: 3px solid #7a9a5a; background: #f3f6ee; color: #3d4a31; font-size: 12px; line-height: 1.6; border-radius: 0 6px 6px 0; }
+    .slot-official.slot-warn { border-left-color: #a5482f; background: #fbefeb; color: #7a3420; font-weight: 400; }
+    .slot-official b { margin-right: 6px; }
+    .slot-facts b { font-weight: 700; color: #4a5c22; margin-right: 2px; }
+    .slot-facts a.slot-source { color: #4a5c22; }
+    .day-label {
+      flex: 0 0 auto;
+      color: #4a5c22;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: #fff;
+      padding: 4px 10px;
+      border: 1px solid #d8dfc0;
+    }
+    .day-date {
+      flex: 1 1 auto;
+      color: #3a3832;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .day-title {
+      flex: 1 1 100%;
+      margin: 2px 0 0;
+      color: var(--ink);
+      font-size: 16px;
+      font-weight: 700;
+      text-align: left;
+      line-height: 1.4;
+    }
+    .timeline {
+      display: grid;
+      gap: 4px;
+    }
+    .slot {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px 0;
+      border-top: 1px solid #f0ede5;
+    }
+    .slot:first-child { border-top: 0; padding-top: 4px; }
+    .time {
+      color: #a4873a;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.35;
+      padding-top: 2px;
+    }
+    /* A slot: the words on the left, the photo on the right as tall as they are. */
+    .slot-body { display: flex; gap: 22px; align-items: stretch; }
+    /* The facts box sits at the bottom of the words, level with the bottom of the photos; any
+       room left stays above it. */
+    .slot-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; }
+    .slot-text > * { flex: none; }
+    .slot-text > .slot-info { margin-top: auto; }
+    /* At least this much room above the facts box when the words fill the slot. */
+    .slot-text > :nth-last-child(2) { margin-bottom: 12px; }
+    /* The photo always on the right, as tall as its slot (never shorter than 225px); a place
+       without one keeps the frame. */
+    .slot-media { flex: 0 0 340px; display: flex; flex-direction: column; gap: 6px; align-self: stretch; }
+    .slot-photo {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 200px;
+      margin: 0;
+      border-radius: var(--photo-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-photo);
+      background: #e9e7df;
+    }
+    /* No photo found: the column stays (the slots line up), empty. */
+    .slot-photo.empty { background: none; box-shadow: none; }
+    .slot-photo.empty .ln-icon { display: none; }
+    .slot-photo img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 0;
+    }
+    /* Kind of place, above its name. */
+    .slot-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+    .slot-head .place { margin: 0; flex: 1 1 auto; }
+    .slot-cat {
+      display: inline-flex; align-items: center; gap: 5px; margin: 0; padding: 2px 9px 2px 7px; flex: none;
+      border-radius: 999px; background: #efe9d6; color: #7a6a2c; font-size: 11.5px; letter-spacing: .03em;
+    }
+    .slot-cat .ln-icon { width: 15px; height: 15px; stroke: #7a6a2c; }
+    .day-kinds { display: inline-flex; gap: 6px; margin-left: 12px; vertical-align: -3px; }
+    .day-kinds .ln-icon { width: 17px; height: 17px; stroke: #7a6a2c; }
+    .ln-icon { width: 14px; height: 14px; flex: none; fill: none; stroke: #8a8576; stroke-width: 1.5;
+            stroke-linecap: round; stroke-linejoin: round; }
+    .place-en { margin-left: 4px; color: var(--muted); font-size: 12.5px; font-weight: 400; }
+    .slot-text > .note {
+      margin: 8px 0 0; padding: 7px 10px; background: var(--paper-soft); border-radius: 6px;
+      color: #3d3a2c; font-size: 13.5px;
+    }
+    /* The facts, one per line, the most used first (fill.py), on a tint of their icons' green. */
+    .slot-info {
+      margin: 12px 0 0; padding: 10px 12px; list-style: none; color: #4f4d45; font-size: 12.5px; line-height: 1.5;
+      display: grid; grid-template-columns: 14px max-content minmax(0, 1fr); gap: 6px 8px; align-items: start;
+      background: #f1f4ea; border-radius: 8px;
+    }
+    .slot-info .ln-icon { stroke: #6b7d3a; }
+    /* The description: three lines, then "more" (added by the script below only when longer). */
+    .slot-text .slot-summary { margin: 8px 0 0; }
+    .slot-text .slot-summary.clamped { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .slot-more-btn { align-self: flex-end; margin: 2px 0 0; padding: 0; border: 0; background: none; cursor: pointer;
+                     color: #4a5c22; font: inherit; font-size: 12.5px; }
+    .slot-more-btn:hover { text-decoration: underline; }
+    .slot-info li { display: contents; }
+    .slot-info .ln-icon { margin-top: 2px; }
+    .slot-info b { color: #4a5c22; font-weight: 700; white-space: nowrap; }
+    .slot-info a { color: #4a5c22; text-decoration: none; overflow-wrap: anywhere; }
+    .slot-info a:hover { text-decoration: underline; }
+    .slot-info small { color: #8a8576; }
+    .slot-info q { display: block; margin-top: 2px; color: #6b6a5f; font-size: 12px; quotes: "「" "」"; }
+    .slot-status.ok .ln-icon { stroke: #7a9a5a; }
+    .slot-status.ok b, .slot-status.ok span { color: #3d4a31; }
+    .slot-status.warn .ln-icon { stroke: #a5482f; }
+    .slot-status.warn b, .slot-status.warn span { color: #a5482f; }
+    .slot-plain-icon { margin-right: 6px; vertical-align: -2px; }
+    /* One thumbnail per photo under the big one: there are more to see, and any can be picked. */
+    .slot-gallery { display: flex; flex-wrap: wrap; gap: 6px; }
+    .slot-gallery img {
+      width: 62px; height: 46px; object-fit: cover; border-radius: 5px; cursor: pointer; display: block;
+      outline: 2px solid transparent; outline-offset: 1px; opacity: .85; transition: outline-color .2s ease, opacity .2s ease;
+    }
+    .slot-gallery img:hover { opacity: 1; }
+    .slot-gallery img.on { outline-color: #7a9a2e; opacity: 1; }
+    .slot-links > span { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+    .slot-link { display: inline-flex; align-items: center; gap: 4px; }
+    /* Photos open large on click (the page's script; without it they simply stay as they are). */
+    .slot-photo img, .mosaic img, .poster img, .meal-photo img { cursor: zoom-in; }
+    /* The big photo of a slot with more than one photo cycles through them. */
+    .slot-photo.carousel { position: relative; }
+    .slot-photo.carousel img { transition: opacity .25s ease; }
+    .ph-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(20, 20, 18, 0.55);
+      color: #fff;
+      font-size: 20px;
+      line-height: 26px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity .2s ease;
+    }
+    .ph-nav.prev { left: 8px; }
+    .ph-nav.next { right: 8px; }
+    .slot-photo.carousel .ph-nav, .meal-poster .ph-nav { opacity: .75; }
+    .meal-poster:hover .ph-nav { opacity: 1; }
+    .poster.meal-poster { min-height: 440px; }  /* as tall as the highlight photos: less of the dish cut away */
+    .meal-poster img { transition: opacity .35s ease; }
+    .meal-poster .ph-nav { z-index: 3; }
+    .meal-poster .ph-dots { z-index: 3; bottom: 14px; }
+    .slot-photo.carousel:hover .ph-nav, .ph-nav:focus-visible { opacity: 1; }
+    .ph-dots {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      pointer-events: none;
+    }
+    .ph-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.55);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    }
+    .ph-dots span.on { background: #fff; }
+    /* The large view. */
+    html.lb-open { overflow: hidden; }
+    /* fill.py adds this while the stop details are still being looked up; the page reloads
+       itself until they are in. */
+    .details-pending {
+      position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 50;
+      max-width: calc(100% - 32px); padding: 10px 18px; border-radius: 999px;
+      background: #2f2d28; color: #f5f3ea; font-size: 14px; box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 24px;
+      background: rgba(12, 12, 10, 0.88);
+    }
+    .lightbox[hidden] { display: none; }
+    .lightbox figure { margin: 0; text-align: center; min-width: 0; }
+    .lightbox figure img {
+      display: block;
+      max-width: min(1280px, 86vw);
+      max-height: 82vh;
+      margin: 0 auto;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+    .lightbox figcaption { margin-top: 10px; color: #e8e6dc; font-size: 14px; }
+    .lb-nav, .lb-close {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      font-size: 28px;
+      line-height: 42px;
+      cursor: pointer;
+    }
+    .lb-nav:hover, .lb-close:hover { background: rgba(255, 255, 255, 0.26); }
+    .lb-close { position: absolute; top: 16px; right: 16px; font-size: 26px; }
+    .lightbox.single .lb-nav { visibility: hidden; }
+    @media (prefers-reduced-motion: reduce) {
+      .slot-photo.carousel img, .ph-nav, .slot-gallery img { transition: none; }
+    }
+    .place {
+      margin: 0 0 4px;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    .slot .address { margin: 0 0 6px; }
+    .note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .footer-note {
+      margin-top: 8px;
+      text-align: center;
+      color: #9a968b;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .poster,
+      .mosaic-main,
+      .mosaic-side > div,
+      .meal-photo {
+        transition: none;
+      }
+      .poster.has-photo:hover,
+      .mosaic-main:hover,
+      .mosaic-side > div:hover,
+      .meal-photo:hover {
+        transform: none;
+      }
+    }
+    @media (max-width: 720px) {
+      .days-wrap { grid-template-columns: minmax(0, 1fr); }
+      .overview .ov-d, .overview .ov-s { display: none; }
+      .overview .ov-t { width: auto; }
+      .day-nav { display: none; }
+      .page { padding: 12px 12px 48px; }
+      .hero { padding: 22px 18px 24px; }
+      .hero h1 { font-size: 26px; }
+      .section { padding: 24px 16px; }
+      .trip-facts { grid-template-columns: 1fr; }
+      .trip-fact {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .trip-fact:last-child { border-bottom: 0; }
+      .climate-tips { grid-template-columns: 1fr; }
+      .climate-tip {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .climate-tip:last-child { border-bottom: 0; }
+      .poster.mosaic { grid-template-columns: 1fr; min-height: 0; }
+      .mosaic-main { min-height: 240px; }
+      .mosaic-side {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: none;
+      }
+      /* Narrow: the photo goes above the words. */
+      .slot-body { flex-direction: column; gap: 12px; }
+      .poster.meal-poster { min-height: 260px; }
+      .slot-media { order: -1; flex: none; width: 100%; }
+      .slot-photo { flex: none; height: 200px; }
+      .slot-media:has(> .slot-photo.empty) { display: none; }
+      .slot {
+        grid-template-columns: 80px 1fr;
+        gap: 10px;
+      }
+      .info-list.meal-list, .info-list.stay-list { grid-template-columns: 1fr; }
+      .meal-photo {
+        width: 100%;
+        height: 160px;
+        justify-self: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-clock" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2"/><path d="M8 4.6V8l2.4 1.6"/></symbol>
+  <symbol id="i-ticket" viewBox="0 0 16 16"><path d="M2 5.2h12v1.6a1.4 1.4 0 0 0 0 2.4v1.6H2V9.2a1.4 1.4 0 0 0 0-2.4z"/><path d="M10 5.4v5.2" stroke-dasharray="1.2 1.4"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2"/><path d="M1.8 8h12.4M8 1.8c1.8 2 1.8 10.4 0 12.4M8 1.8c-1.8 2-1.8 10.4 0 12.4"/></symbol>
+  <symbol id="i-book" viewBox="0 0 16 16"><path d="M2.5 3.2h4.2A1.3 1.3 0 0 1 8 4.5v8.3a1.1 1.1 0 0 0-1.1-1.1H2.5zM13.5 3.2H9.3A1.3 1.3 0 0 0 8 4.5v8.3a1.1 1.1 0 0 1 1.1-1.1h4.4z"/></symbol>
+  <symbol id="i-link" viewBox="0 0 16 16"><path d="M6.6 9.4l2.8-2.8M7.2 4.6l1.2-1.2a2.6 2.6 0 0 1 3.7 3.7l-1.2 1.2M8.8 11.4l-1.2 1.2a2.6 2.6 0 0 1-3.7-3.7l1.2-1.2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 16 16"><path d="M8 14.2s4.6-4.3 4.6-7.6a4.6 4.6 0 0 0-9.2 0C3.4 9.9 8 14.2 8 14.2z"/><circle cx="8" cy="6.6" r="1.6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.2"/><path d="M5.3 8.2l1.9 1.9 3.6-3.8"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 16 16"><path d="M8 2.2l6.2 11H1.8z"/><path d="M8 6.6v3M8 11.4v.1"/></symbol>
+  <symbol id="c-shrine" viewBox="0 0 16 16"><path d="M2 4.2c2 .6 10 .6 12 0M3.2 6.6h9.6M4.6 4.6v9.2M11.4 4.6v9.2"/></symbol>
+  <symbol id="c-museum" viewBox="0 0 16 16"><path d="M2.2 6L8 2.6 13.8 6zM2.6 13.4h10.8M4 7.2v5M6.7 7.2v5M9.3 7.2v5M12 7.2v5"/></symbol>
+  <symbol id="c-view" viewBox="0 0 16 16"><path d="M6.4 14V6.2L8 2l1.6 4.2V14M5 14h6M6.4 9h3.2"/></symbol>
+  <symbol id="c-shop" viewBox="0 0 16 16"><path d="M3 5.6h10l-.8 8.2H3.8zM5.8 5.6V4.4a2.2 2.2 0 0 1 4.4 0v1.2"/></symbol>
+  <symbol id="c-fun" viewBox="0 0 16 16"><circle cx="8" cy="7" r="4.6"/><path d="M8 2.4v9.2M3.4 7h9.2M4.8 3.8l6.4 6.4M11.2 3.8l-6.4 6.4M5.6 14.2L8 11.6l2.4 2.6"/></symbol>
+  <symbol id="c-nature" viewBox="0 0 16 16"><path d="M1.6 13.6l4.4-7.2 2.6 4 1.8-2.6 4 5.8z"/><circle cx="11.6" cy="3.8" r="1.3"/></symbol>
+  <symbol id="c-onsen" viewBox="0 0 16 16"><path d="M2.4 10.4c0 2.2 2.5 3.4 5.6 3.4s5.6-1.2 5.6-3.4"/><path d="M5.4 8.6c-.8-1 .8-1.8 0-2.8M8 8.6c-.8-1 .8-1.8 0-2.8M10.6 8.6c-.8-1 .8-1.8 0-2.8"/></symbol>
+  <symbol id="c-ski" viewBox="0 0 16 16"><path d="M8 1.8v12.4M2.6 4.9l10.8 6.2M2.6 11.1l10.8-6.2M6.6 2.8L8 4.2l1.4-1.4M6.6 13.2L8 11.8l1.4 1.4"/></symbol>
+  <symbol id="c-food" viewBox="0 0 16 16"><path d="M2.4 8h11.2a5.6 5.6 0 0 1-11.2 0zM9.2 2.4L6.8 7.6M12.4 3.2L8.8 7.6"/></symbol>
+  <symbol id="c-animal" viewBox="0 0 16 16"><path d="M2 8c2.2-3 6.4-3.6 9.4-.4L14 5.4v5.2l-2.6-2.2C8.4 11.6 4.2 11 2 8z"/><circle cx="5.4" cy="7.6" r=".5"/></symbol>
+  <symbol id="c-walk" viewBox="0 0 16 16"><circle cx="8.6" cy="2.8" r="1.2"/><path d="M7.8 5.2L6.2 9l2 1.6.8 3.6M7.8 5.2l2 2.2 2 .4M6.2 9l-1.4 4.6M7.2 6.4l-2.4 1"/></symbol>
+  <symbol id="c-move" viewBox="0 0 16 16"><rect x="3.4" y="2.2" width="9.2" height="9.2" rx="2"/><path d="M3.4 7.4h9.2M5.6 13.8l1.2-2.4M10.4 13.8l-1.2-2.4"/><circle cx="5.8" cy="9.4" r=".4"/><circle cx="10.2" cy="9.4" r=".4"/></symbol>
+</svg>
+  <div class="page">
+    <header class="hero">
+      <div class="eyebrow">Acer Qubi Claw Travel Plan</div>
+      <h1>{{TITLE}}</h1>
+      <p class="subtitle">{{SUBTITLE}}</p>
+    </header>
+
+    <section class="trip-facts" aria-label="trip facts">
+      <div class="trip-fact">
+        <span class="label">Trip length</span>
+        <span class="value">{{TRIP_DAYS}}</span>
+        <span class="value-sub">{{TRIP_DATE_RANGE}}</span>
+      </div>
+      <div class="trip-fact">
+        <span class="label">Trip style</span>
+        <span class="value">{{TRIP_STYLE}}</span>
+      </div>
+      <div class="trip-fact">
+        <span class="label">Focus</span>
+        <span class="value">Itinerary, meals, stays, daily plan</span>
+      </div>
+    </section>
+
+    <section class="climate-tips" aria-label="climate tips">
+      <div class="climate-tip">
+        <div class="tip-text">
+          <span class="tip-label">Season</span>
+          <span class="tip-value">{{CLIMATE_SEASON}}</span>
+        </div>
+      </div>
+      <div class="climate-tip">
+        <div class="tip-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M10 13.5V5.8a2.1 2.1 0 0 1 4.2 0V13.5" />
+            <path d="M10 14.2a3.4 3.4 0 1 0 4.2 0" />
+            <path d="M12 5.2V14" />
+          </svg>
+        </div>
+        <div class="tip-text">
+          <span class="tip-label">Avg temperature</span>
+          <span class="tip-value">{{CLIMATE_TEMP}}</span>
+        </div>
+      </div>
+      <div class="climate-tip">
+        <div class="tip-icon" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M7.5 11.2a3.2 3.2 0 0 1 .4-6.3 4.4 4.4 0 0 1 8.3 1.2A3.3 3.3 0 0 1 17.2 14H8.1a3 3 0 0 1-.6-2.8z" />
+            <path d="M8.2 17.2l-.8 2.2M12 16.8l-.8 2.6M15.8 17.2l-.8 2.2" />
+          </svg>
+        </div>
+        <div class="tip-text">
+          <span class="tip-label">Rain outlook</span>
+          <span class="tip-value">{{CLIMATE_RAIN}}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Highlights">
+      <div class="section-title">
+        <div class="icon">&#10022;</div>
+        <h2>{{SEC_HIGHLIGHTS}}</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p class="lead">{{SUBTITLE}}</p>
+      <ul class="feature-list">
+        {{HIGHLIGHTS_LIST}}
+      </ul>
+      <div class="poster mosaic">
+        <div class="mosaic-main has-photo">
+          <img
+            src="{{HIGHLIGHT_IMG_1}}"
+            alt="{{HIGHLIGHT_IMG_1_ALT}}"
+            loading="lazy"
+            data-fallback="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/View_from_airplane_window.jpg/960px-View_from_airplane_window.jpg"
+            onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src=this.dataset.fallback;}else{this.style.display='none';}"
+          />
+          <div class="poster-caption">TRAVEL HIGHLIGHTS</div>
+        </div>
+        <div class="mosaic-side">
+          <div class="has-photo">
+            <img
+              src="{{HIGHLIGHT_IMG_2}}"
+              alt="{{HIGHLIGHT_IMG_2_ALT}}"
+              loading="lazy"
+              data-fallback="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Beach_sunset.jpg/960px-Beach_sunset.jpg"
+              onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src=this.dataset.fallback;}else{this.style.display='none';}"
+            />
+          </div>
+          <div class="has-photo">
+            <img
+              src="{{HIGHLIGHT_IMG_3}}"
+              alt="{{HIGHLIGHT_IMG_3_ALT}}"
+              loading="lazy"
+              data-fallback="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Empty_road.jpg/960px-Empty_road.jpg"
+              onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src=this.dataset.fallback;}else{this.style.display='none';}"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Recommended meals">
+      <div class="section-title">
+        <div class="icon icon-meals" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 3v7a1.5 1.5 0 0 0 3 0V3" />
+            <path d="M7 3v2" />
+            <path d="M8.5 3v2" />
+            <path d="M10 3v2" />
+            <path d="M8.5 12v9" />
+            <path d="M15 3v9c0 1.5 1.8 2 1.8 4.5V21" />
+            <path d="M15 12h2.2" />
+          </svg>
+        </div>
+        <h2>{{SEC_MEALS}}</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p class="lead">{{MEALS_LEAD}}</p>
+      <div class="poster has-photo meal-poster">
+        <img
+          src="{{MEAL_IMG}}"
+          alt="{{MEAL_IMG_ALT}}"
+          loading="lazy"
+          data-fallback="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Breakfast.jpg/960px-Breakfast.jpg"
+              onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src=this.dataset.fallback;}else{this.style.display='none';}"
+        />
+        <div class="poster-caption">FEATURED MEALS</div>
+      </div>
+      <div class="info-list meal-list">
+        <!--
+          STRUCTURE LOCK (meals - text left, food photo right):
+          Only replace text/URLs. Never invent tags.
+          <div class="info-item meal-row">
+            <div class="info-body">
+              <p class="name">NAME</p>
+              <p class="meta">Area / Type</p>
+              <p class="address"><a href="GOOGLE_MAPS_URL" ...>Address</a></p>
+              <p class="note">Why</p>
+            </div>
+            <div class="meal-photo has-photo">
+              <img src="FOOD_URL" alt="Food name" loading="lazy" data-fallback="..." onerror="..." />
+            </div>
+          </div>
+          Stays do NOT use meal-row / meal-photo.
+        -->
+        <div class="info-item meal-row">
+          <div class="info-body">
+            <p class="name">{{MEAL_1_NAME}}</p>
+            <p class="meta">{{MEAL_1_META}}</p>
+            <p class="note">{{MEAL_1_NOTE}}</p>
+            {{MEAL_1_ABOUT}}
+            <ul class="slot-info place-map"><li><svg class="ln-icon" aria-hidden="true"><use href="#i-pin"/></svg><b>{{MAP_LABEL}}</b><span><a href="{{MEAL_1_MAPS_URL}}" target="_blank" rel="noopener noreferrer">{{MEAL_1_ADDRESS}} ↗</a></span></li></ul>
+          </div>
+          <div class="meal-photo has-photo">
+            <img
+              src="{{MEAL_1_IMG}}"
+              alt="{{MEAL_1_IMG_ALT}}"
+              loading="lazy"
+              data-fallback="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Breakfast.jpg/960px-Breakfast.jpg"
+              onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src=this.dataset.fallback;}else{this.style.display='none';}"
+            />
+          </div>
+        </div>
+        <div class="info-item meal-row">
+          <div class="info-body">
+            <p class="name">{{MEAL_2_NAME}}</p>
+            <p class="meta">{{MEAL_2_META}}</p>
+            <p class="note">{{MEAL_2_NOTE}}</p>
+            {{MEAL_2_ABOUT}}
+            <ul class="slot-info place-map"><li><svg class="ln-icon" aria-hidden="true"><use href="#i-pin"/></svg><b>{{MAP_LABEL}}</b><span><a href="{{MEAL_2_MAPS_URL}}" target="_blank" rel="noopener noreferrer">{{MEAL_2_ADDRESS}} ↗</a></span></li></ul>
+          </div>
+          <div class="meal-photo has-photo">
+            <img
+              src="{{MEAL_2_IMG}}"
+              alt="{{MEAL_2_IMG_ALT}}"
+              loading="lazy"
+              data-fallback="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Breakfast.jpg/960px-Breakfast.jpg"
+              onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src=this.dataset.fallback;}else{this.style.display='none';}"
+            />
+          </div>
+        </div>
+        <div class="info-item meal-row">
+          <div class="info-body">
+            <p class="name">{{MEAL_3_NAME}}</p>
+            <p class="meta">{{MEAL_3_META}}</p>
+            <p class="note">{{MEAL_3_NOTE}}</p>
+            {{MEAL_3_ABOUT}}
+            <ul class="slot-info place-map"><li><svg class="ln-icon" aria-hidden="true"><use href="#i-pin"/></svg><b>{{MAP_LABEL}}</b><span><a href="{{MEAL_3_MAPS_URL}}" target="_blank" rel="noopener noreferrer">{{MEAL_3_ADDRESS}} ↗</a></span></li></ul>
+          </div>
+          <div class="meal-photo has-photo">
+            <img
+              src="{{MEAL_3_IMG}}"
+              alt="{{MEAL_3_IMG_ALT}}"
+              loading="lazy"
+              data-fallback="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Breakfast.jpg/960px-Breakfast.jpg"
+              onerror="if(!this.dataset.fb){this.dataset.fb='1';this.src=this.dataset.fallback;}else{this.style.display='none';}"
+            />
+          </div>
+        </div>
+        {{MEALS_EXTRA}}
+      </div>
+    </section>
+
+    <section class="section" aria-label="Recommended stays">
+      <div class="section-title">
+        <div class="icon">&#8962;</div>
+        <h2>{{SEC_STAYS}}</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p class="lead">{{STAYS_LEAD}}</p>
+      <div class="info-list stay-list">
+        <!-- Same .info-item structure as meals. Replace text only. -->
+        <div class="info-item">
+          <p class="name">{{STAY_1_NAME}}</p>
+          <p class="meta">{{STAY_1_META}}</p>
+          <p class="note">{{STAY_1_NOTE}}</p>
+          <ul class="slot-info place-map"><li><svg class="ln-icon" aria-hidden="true"><use href="#i-pin"/></svg><b>{{MAP_LABEL}}</b><span><a href="{{STAY_1_MAPS_URL}}" target="_blank" rel="noopener noreferrer">{{STAY_1_ADDRESS}} ↗</a></span></li></ul>
+        </div>
+        <div class="info-item">
+          <p class="name">{{STAY_2_NAME}}</p>
+          <p class="meta">{{STAY_2_META}}</p>
+          <p class="note">{{STAY_2_NOTE}}</p>
+          <ul class="slot-info place-map"><li><svg class="ln-icon" aria-hidden="true"><use href="#i-pin"/></svg><b>{{MAP_LABEL}}</b><span><a href="{{STAY_2_MAPS_URL}}" target="_blank" rel="noopener noreferrer">{{STAY_2_ADDRESS}} ↗</a></span></li></ul>
+        </div>
+        {{STAYS_EXTRA}}
+      </div>
+    </section>
+
+    <section class="section overview-section" aria-label="Trip overview">
+      <div class="section-title">
+        <div class="icon">&#9776;</div>
+        <h2>{{SEC_OVERVIEW}}</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p class="lead">{{OVERVIEW_LEAD}}</p>
+      <table class="overview">
+{{OVERVIEW_ROWS}}
+      </table>
+    </section>
+
+    <section class="section" aria-label="Daily itinerary">
+      <div class="section-title">
+        <div class="icon">&#8984;</div>
+        <h2>{{SEC_DAYS}}</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="days-wrap">
+        <nav class="day-nav" aria-label="Days" data-label="{{DAY_NAV_LABEL}}"></nav>
+        <div class="days">
+        {{DAY_1}}
+        {{MORE_DAYS}}
+        </div>
+      </div>
+    </section>
+
+
+
+
+
+    <p class="footer-note">This page is a planning preview. Meals and stays are suggestions only - no live booking or prices.</p>
+  </div>
+  <script>
+  /* A page that reloaded itself while its stop details came in goes back to where it was read. */
+  (function () {
+    try {
+      var key = 'atp-scroll:' + location.pathname;
+      var y = sessionStorage.getItem(key);
+      if (y !== null) {
+        sessionStorage.removeItem(key);
+        window.scrollTo(0, Number(y) || 0);
+        // Photos above may still be loading: scroll again once they are in.
+        window.addEventListener('load', function () { window.scrollTo(0, Number(y) || 0); });
+      }
+    } catch (e) {}
+  })();
+  </script>
+  <script>
+  /* Photos: the big photo beside a slot cycles through the place's photos (its gallery below
+     picks one), and any photo opens large. Without this script the page reads the same, just
+     still. Days after the first can be added after load (the Agent panel's preview inserts
+     them one by one), so new slots are set up as they appear. */
+  (function () {
+    var AUTO_MS = 4500;
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var BIG = /\/960px-/;
+
+    function srcOf(img) { return img.currentSrc || img.src; }
+    function larger(url) { return BIG.test(url) ? url.replace(BIG, '/1600px-') : url; }
+
+    /* The slot's photos: its own photo first, then the gallery's. Kept once the carousel is set
+       up, since the big frame then shows whichever photo is current. */
+    function slotPhotos(slot) {
+      if (slot._photos) return slot._photos;
+      var main = slot.querySelector('.slot-photo img');
+      var list = main ? [srcOf(main)] : [];
+      var thumbs = slot.querySelectorAll('.slot-gallery img');
+      for (var i = 0; i < thumbs.length; i++) {
+        var u = srcOf(thumbs[i]);
+        if (u && list.indexOf(u) < 0 && thumbs[i].style.display !== 'none') list.push(u);
+      }
+      return list;
+    }
+
+    /* A slot becomes a carousel once it has two photos. In the panel's preview the main photo
+       and the gallery arrive separately, so a slot is looked at again whenever it changes. */
+    function setUp(slot) {
+      if (slot.dataset.carousel) return;
+      var frame = slot.querySelector('.slot-photo');
+      var main = frame && frame.querySelector('img');
+      var list = main ? slotPhotos(slot) : [];
+      if (list.length < 2) return;
+      slot.dataset.carousel = '1';
+      slot._photos = list;
+      var at = 0, timer = null;
+      frame.classList.add('carousel');
+      var prev = document.createElement('button');
+      prev.type = 'button'; prev.className = 'ph-nav prev'; prev.setAttribute('aria-label', 'Previous photo'); prev.textContent = '‹';
+      var next = document.createElement('button');
+      next.type = 'button'; next.className = 'ph-nav next'; next.setAttribute('aria-label', 'Next photo'); next.textContent = '›';
+      var dots = document.createElement('div');
+      dots.className = 'ph-dots';
+      for (var k = 0; k < list.length; k++) dots.appendChild(document.createElement('span'));
+      frame.appendChild(prev); frame.appendChild(next); frame.appendChild(dots);
+      function show(i) {
+        at = (i + list.length) % list.length;
+        main.src = list[at];
+        for (var d = 0; d < dots.children.length; d++) dots.children[d].classList.toggle('on', d === at);
+        var thumbs = slot.querySelectorAll('.slot-gallery img');
+        for (var t = 0; t < thumbs.length; t++) thumbs[t].classList.toggle('on', srcOf(thumbs[t]) === list[at]);
+      }
+      function stop() { if (timer) { clearInterval(timer); timer = null; } }
+      function start() { stop(); if (!still) timer = setInterval(function () { show(at + 1); }, AUTO_MS); }
+      prev.addEventListener('click', function (e) { e.stopPropagation(); show(at - 1); start(); });
+      next.addEventListener('click', function (e) { e.stopPropagation(); show(at + 1); start(); });
+      frame.addEventListener('mouseenter', stop);
+      frame.addEventListener('mouseleave', start);
+      /* A photo of the gallery puts itself in the big frame. */
+      slot.addEventListener('click', function (e) {
+        var img = e.target.closest && e.target.closest('.slot-gallery img');
+        if (!img) return;
+        var i = list.indexOf(srcOf(img));
+        if (i >= 0) { show(i); start(); }
+      });
+      show(0);
+      start();
+    }
+
+    /* A description longer than three lines shows three, then "more"; a shorter one stays as it is. */
+    function clamp(p) {
+      /* Looked at again until it has its link: the width it is measured at can still change
+         (photos and the page settling), so a "fits" now may not fit after load. */
+      if (p.dataset.clamp) return;
+      p.classList.add('clamped');
+      if (p.scrollHeight <= p.clientHeight + 2) { p.classList.remove('clamped'); return; }
+      p.dataset.clamp = '1';
+      var more = p.dataset.more || 'More', less = p.dataset.less || 'Less';
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'slot-more-btn'; b.textContent = more + ' ›';
+      b.addEventListener('click', function () {
+        var open = p.classList.toggle('clamped') === false;
+        b.textContent = open ? less + ' ‹' : more + ' ›';
+      });
+      p.parentNode.insertBefore(b, p.nextSibling);
+    }
+
+    /* The day list on the left: a link per day, the day being read marked. */
+    var nav = document.querySelector('.day-nav'), navLinks = [], navTimer = null;
+    function buildNav() {
+      if (!nav) return;
+      var days = document.querySelectorAll('.days > .day');
+      if (days.length === navLinks.length) return;
+      var label = nav.dataset.label || 'DAY {n}';
+      nav.textContent = '';
+      navLinks = [];
+      var title = document.createElement('p');
+      title.className = 'day-nav-title'; title.textContent = 'ITINERARY';
+      var list = document.createElement('div');
+      list.className = 'day-nav-list';
+      nav.appendChild(title); nav.appendChild(list);
+      for (var i = 0; i < days.length; i++) {
+        days[i].id = days[i].id || 'day-' + (i + 1);
+        var a = document.createElement('a');
+        a.href = '#' + days[i].id;
+        /* "2026/11/3 Tuesday" → "11/3 Tue" under the day's number. */
+        var date = days[i].querySelector('.day-date');
+        var m = date && date.textContent.match(/\d{4}\/(\d{1,2}\/\d{1,2})\s*([A-Za-z]{3})?/);
+        a.innerHTML = '<span class="dot"></span><span class="d"></span>' + (m ? '<span class="dt"></span>' : '');
+        a.querySelector('.d').textContent = label.replace('{n}', i + 1);
+        if (m) a.querySelector('.dt').textContent = m[1] + (m[2] ? ' ' + m[2] : '');
+        (function (day) {
+          a.addEventListener('click', function (e) {
+            e.preventDefault();
+            day.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
+          });
+        })(days[i]);
+        list.appendChild(a);
+        navLinks.push(a);
+      }
+      markNav();
+    }
+    function markNav() {
+      var days = document.querySelectorAll('.days > .day'), at = 0;
+      for (var i = 0; i < days.length; i++) if (days[i].getBoundingClientRect().top <= window.innerHeight * 0.35) at = i;
+      for (var j = 0; j < navLinks.length; j++) navLinks[j].classList.toggle('on', j === at);
+      var on = navLinks[at];
+      if (on && nav.scrollHeight > nav.clientHeight) {
+        if (on.offsetTop < nav.scrollTop || on.offsetTop > nav.scrollTop + nav.clientHeight - on.offsetHeight)
+          nav.scrollTop = on.offsetTop - nav.clientHeight / 2;
+      }
+    }
+    window.addEventListener('scroll', function () {
+      if (navTimer) return;
+      navTimer = setTimeout(function () { navTimer = null; markNav(); }, 80);
+    }, { passive: true });
+
+    /* The meals' photos, in order, with their names (the poster and the large view use them). */
+    function mealPhotos() {
+      var rows = document.querySelectorAll('.meal-list .meal-row');
+      var list = [], names = [];
+      for (var i = 0; i < rows.length; i++) {
+        var photo = rows[i].querySelector('.meal-photo img'), name = rows[i].querySelector('.name');
+        var src = photo && srcOf(photo);
+        if (src && list.indexOf(src) < 0 && photo.style.display !== 'none') { list.push(src); names.push(name ? name.textContent : ''); }
+      }
+      return { list: list, names: names };
+    }
+
+    /* The big meal photo cycles through the meals below, named in its caption. */
+    function mealPoster() {
+      var poster = document.querySelector('.meal-poster');
+      if (!poster || poster.dataset.carousel) return;
+      var img = poster.querySelector('img'), caption = poster.querySelector('.poster-caption');
+      var meals = mealPhotos(), list = meals.list, names = meals.names;
+      if (!img || list.length < 2) return;
+      poster.dataset.carousel = '1';
+      var label = caption ? caption.textContent : '', at = 0, timer = null;
+      var prev = document.createElement('button'), next = document.createElement('button'), dots = document.createElement('div');
+      prev.type = next.type = 'button';
+      prev.className = 'ph-nav prev'; prev.textContent = '‹'; prev.setAttribute('aria-label', 'Previous photo');
+      next.className = 'ph-nav next'; next.textContent = '›'; next.setAttribute('aria-label', 'Next photo');
+      dots.className = 'ph-dots';
+      for (var k = 0; k < list.length; k++) dots.appendChild(document.createElement('span'));
+      poster.appendChild(prev); poster.appendChild(next); poster.appendChild(dots);
+      function show(n) {
+        at = (n + list.length) % list.length;
+        img.style.opacity = '0';
+        setTimeout(function () { img.src = list[at]; img.alt = names[at]; img.style.opacity = '1'; }, 180);
+        if (caption) caption.textContent = names[at] ? label + ' · ' + names[at] : label;
+        for (var d = 0; d < dots.children.length; d++) dots.children[d].classList.toggle('on', d === at);
+      }
+      function start() { if (timer) clearInterval(timer); if (!still) timer = setInterval(function () { show(at + 1); }, AUTO_MS); }
+      prev.addEventListener('click', function (e) { e.stopPropagation(); show(at - 1); start(); });
+      next.addEventListener('click', function (e) { e.stopPropagation(); show(at + 1); start(); });
+      poster.addEventListener('mouseenter', function () { if (timer) { clearInterval(timer); timer = null; } });
+      poster.addEventListener('mouseleave', start);
+      at = Math.max(0, list.indexOf(srcOf(img)));
+      show(at);
+      start();
+    }
+
+    /* A line of the overview takes the reader to its day. */
+    document.addEventListener('click', function (e) {
+      var row = e.target.closest && e.target.closest('.overview tr[data-day]');
+      if (!row) return;
+      var day = document.querySelectorAll('.days > .day')[Number(row.dataset.day) - 1];
+      if (day) day.scrollIntoView({ behavior: still ? 'auto' : 'smooth', block: 'start' });
+    });
+
+    function setUpAll(root) {
+      mealPoster();
+      buildNav();
+      var slots = root.querySelectorAll ? root.querySelectorAll('.slot') : [];
+      for (var i = 0; i < slots.length; i++) setUp(slots[i]);
+      var texts = root.querySelectorAll ? root.querySelectorAll('.slot-summary') : [];
+      for (var j = 0; j < texts.length; j++) clamp(texts[j]);
+    }
+
+    /* The large view. */
+    var box = null, boxImg = null, boxCap = null, boxList = [], boxAt = 0, boxName = '', boxNames = null;
+    function open(list, i, name, names) {
+      if (!box) {
+        box = document.createElement('div');
+        box.className = 'lightbox';
+        box.setAttribute('role', 'dialog');
+        box.setAttribute('aria-modal', 'true');
+        box.innerHTML = '<button type="button" class="lb-close" aria-label="Close">×</button>' +
+          '<button type="button" class="lb-nav prev" aria-label="Previous photo">‹</button>' +
+          '<figure><img alt="" /><figcaption></figcaption></figure>' +
+          '<button type="button" class="lb-nav next" aria-label="Next photo">›</button>';
+        document.body.appendChild(box);
+        boxImg = box.querySelector('img');
+        boxCap = box.querySelector('figcaption');
+        boxImg.addEventListener('error', function () {
+          var small = boxList[boxAt];
+          if (boxImg.dataset.tried !== small) { boxImg.dataset.tried = small; boxImg.src = small; }
+        });
+        box.addEventListener('click', function (e) {
+          if (e.target.closest('.lb-nav.prev')) step(-1);
+          else if (e.target.closest('.lb-nav.next')) step(1);
+          else if (!e.target.closest('figure img')) close();
+        });
+      }
+      boxList = list; boxName = name || ''; boxAt = i; boxNames = names || null;
+      box.classList.toggle('single', list.length < 2);
+      box.hidden = false;
+      document.documentElement.classList.add('lb-open');
+      step(0);
+    }
+    function step(delta) {
+      boxAt = ((boxAt + delta) % boxList.length + boxList.length) % boxList.length;
+      boxImg.dataset.tried = '';
+      boxImg.src = larger(boxList[boxAt]);
+      var label = boxNames ? boxNames[boxAt] || boxName : boxName;
+      boxImg.alt = label;
+      boxCap.textContent = label + (boxList.length > 1 ? '  ' + (boxAt + 1) + ' / ' + boxList.length : '');
+    }
+    function close() {
+      if (box) box.hidden = true;
+      document.documentElement.classList.remove('lb-open');
+    }
+    document.addEventListener('keydown', function (e) {
+      if (!box || box.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') step(-1);
+      else if (e.key === 'ArrowRight') step(1);
+    });
+
+    document.addEventListener('click', function (e) {
+      var img = e.target.closest && e.target.closest('.slot-photo img, .mosaic img, .poster img, .meal-photo img');
+      if (!img) return;
+      /* A highlight photo: the three highlights, starting at this one, each named by its alt. */
+      var mosaic = img.closest('.poster.mosaic');
+      if (mosaic) {
+        var shots = mosaic.querySelectorAll('img'), hl = [], hlNames = [];
+        for (var h = 0; h < shots.length; h++) {
+          var u = srcOf(shots[h]);
+          if (u && hl.indexOf(u) < 0 && shots[h].style.display !== 'none') { hl.push(u); hlNames.push(shots[h].alt || ''); }
+        }
+        if (hl.length) { open(hl, Math.max(0, hl.indexOf(srcOf(img))), '', hlNames); return; }
+      }
+      /* A meal's photo, or the meal poster: every meal's photo, starting at this one. */
+      if (img.closest('.meal-poster, .meal-photo')) {
+        var meals = mealPhotos();
+        if (meals.list.length) {
+          open(meals.list, Math.max(0, meals.list.indexOf(srcOf(img))), '', meals.names);
+          return;
+        }
+      }
+      var slot = img.closest('.slot');
+      if (slot) {
+        var place = slot.querySelector('.place');
+        var list = slotPhotos(slot);
+        open(list, Math.max(0, list.indexOf(srcOf(img))), place ? place.textContent : '');
+        return;
+      }
+      open([srcOf(img)], 0, img.alt || '');
+    });
+
+    function ready() {
+      setUpAll(document);
+      if (window.MutationObserver) {
+        new MutationObserver(function (changes) {
+          for (var i = 0; i < changes.length; i++)
+            for (var j = 0; j < changes[i].addedNodes.length; j++) {
+              var node = changes[i].addedNodes[j];
+              if (node.nodeType !== 1) continue;
+              var around = node.closest('.slot');
+              if (around) setUp(around);
+              setUpAll(node);
+            }
+        }).observe(document.body, { childList: true, subtree: true });
+      }
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', ready); else ready();
+    window.addEventListener('load', function () { setUpAll(document); });
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () { setUpAll(document); }, 150);
+    });
+  })();
+  </script>
+</body>
+</html>

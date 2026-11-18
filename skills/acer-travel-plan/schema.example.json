@@ -1,0 +1,170 @@
+{
+  "title": "Tokyo 4-Day Easy Trip",
+  "subtitle": "Classic sights × food-friendly pacing — great for a first visit",
+  "summary": "Four easy days that pair Tokyo's classic east-side sights with a waterfront day and a flexible central day, keeping each day to 2–3 main stops near transit.",
+  "origin": "Taipei",
+  "destination": "Tokyo, Japan",
+  "tripDays": "4 Days",
+  "tripDateRange": "2026/8/14 – 2026/8/17",
+  "tripStyle": "Easy trip / Independent travel",
+  "climate": {
+    "season": "Summer",
+    "temp": "26-33 C",
+    "rain": "Often rainy"
+  },
+  "highlights": [
+    "Easy pace with 2–3 key stops each day",
+    "Covers Asakusa, Skytree, Odaiba, and Shinjuku",
+    "Clear food stops with less backtracking",
+    "Stay ideas clustered near transit hubs"
+  ],
+  "meals": [
+    {
+      "name": "Asakusa ningyo-yaki / Nakamise snacks",
+      "area": "Asakusa",
+      "address": "Nakamise-dori, Asakusa, Taito City, Tokyo",
+      "note": "Easy walk-and-eat warmup for arrival day",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Taiyaki_005.jpg/960px-Taiyaki_005.jpg",
+      "imageAlt": "Taiyaki street snack"
+    },
+    {
+      "name": "Ichiran Ramen",
+      "area": "Shinjuku",
+      "address": "3-34-11 Shinjuku, Shinjuku City, Tokyo",
+      "note": "Classic ramen available late — flexible for the schedule",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Char_Siu_Tonkotsu_Ramen_-_Shogun_Ramen_2023-10-11.jpg/960px-Char_Siu_Tonkotsu_Ramen_-_Shogun_Ramen_2023-10-11.jpg",
+      "imageAlt": "Ramen bowl"
+    },
+    {
+      "name": "Outer Tsukiji sushi quick bite",
+      "area": "Around Tsukiji",
+      "address": "4-16 Tsukiji, Chuo City, Tokyo",
+      "note": "Fast seafood stop without a full early-market morning",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Nigiri_Sushi_%2826478732232%29.jpg/960px-Nigiri_Sushi_%2826478732232%29.jpg",
+      "imageAlt": "Nigiri sushi"
+    },
+    {
+      "name": "Odaiba casual meal (ramen or set lunch)",
+      "area": "Odaiba",
+      "address": "1-1-10 Aomi, Koto City, Tokyo (DiverCity Tokyo Plaza)",
+      "note": "Convenient refuel after waterfront sightseeing"
+    }
+  ],
+  "stays": [
+    {
+      "name": "Shinjuku business hotel",
+      "area": "Shinjuku",
+      "address": "Near Shinjuku Station, Shinjuku City, Tokyo",
+      "note": "Easy metro transfers for shopping and evening plans"
+    },
+    {
+      "name": "Hotel near Ueno Station",
+      "area": "Ueno",
+      "address": "Near Ueno Station, Taito City, Tokyo",
+      "note": "Closer to Asakusa and Skytree for east-side days"
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2026/8/14 Friday",
+      "title": "Asakusa & Skytree",
+      "route": "Asakusa → Oshiage → Shinjuku",
+      "items": [
+        {
+          "time": "Morning",
+          "place": "Senso-ji & Kaminarimon",
+          "address": "2-3-1 Asakusa, Taito City, Tokyo",
+          "note": "Photos and a Nakamise stroll",
+          "hours": "09:00–11:30",
+          "transport": "Ginza Line to Asakusa Station, 5 min walk",
+          "sourceUrl": "https://www.senso-ji.jp/"
+        },
+        {
+          "time": "Afternoon",
+          "place": "Tokyo Skytree observatory",
+          "address": "1-1-2 Oshiage, Sumida City, Tokyo",
+          "note": "City views and nearby browsing",
+          "hours": "13:00–16:00",
+          "transport": "Tobu Skytree Line, 1 stop (about 5 min)"
+        },
+        {
+          "time": "Evening",
+          "place": "Shinjuku dinner",
+          "address": "Kabukicho / East Exit area, Shinjuku City, Tokyo",
+          "note": "Ramen or izakaya wrap-up"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026/8/15 Saturday",
+      "title": "Odaiba waterfront day",
+      "route": "Daiba → Aomi → Daiba",
+      "items": [
+        {
+          "time": "Morning",
+          "place": "Odaiba Seaside Park",
+          "address": "1-4-1 Daiba, Minato City, Tokyo",
+          "note": "Statue of Liberty views and sea breeze walk"
+        },
+        {
+          "time": "Afternoon",
+          "place": "DiverCity / teamLab (pick one)",
+          "address": "1-1-10 Aomi, Koto City, Tokyo",
+          "note": "Shopping or immersive exhibit"
+        },
+        {
+          "time": "Evening",
+          "place": "Odaiba night view · return to hotel",
+          "address": "1-6-1 Daiba, Minato City, Tokyo",
+          "note": "Light bite, then an early rest"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026/8/16 Sunday",
+      "title": "Central Tokyo flex day",
+      "items": [
+        {
+          "time": "Morning",
+          "place": "Meiji Jingu & Harajuku",
+          "address": "1-1 Yoyogikamizonocho, Shibuya City, Tokyo",
+          "note": "Shrine visit, then Takeshita Street"
+        },
+        {
+          "time": "Afternoon",
+          "place": "Shibuya Crossing & shopping",
+          "address": "2-24 Shibuya, Shibuya City, Tokyo",
+          "note": "Landmark photos and free browsing"
+        },
+        {
+          "time": "Evening",
+          "place": "Shinjuku or Shibuya dinner",
+          "address": "Around Shibuya Station, Shibuya City, Tokyo",
+          "note": "Choose based on energy left"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2026/8/17 Monday",
+      "title": "Last-day extras",
+      "items": [
+        {
+          "time": "Morning",
+          "place": "Ueno Park or Ameyoko",
+          "address": "Ueno / Ameyoko, Taito City, Tokyo",
+          "note": "Easy stroll and souvenir shopping"
+        },
+        {
+          "time": "Afternoon",
+          "place": "Head to airport / station",
+          "address": "Tokyo Station / airport transfer point",
+          "note": "Leave buffer for transfers and security"
+        }
+      ]
+    }
+  ]
+}

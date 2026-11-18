@@ -1,0 +1,8 @@
+{
+  "name": "acer-travel-plan",
+  "version": "1.5.0",
+  "private": true,
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}

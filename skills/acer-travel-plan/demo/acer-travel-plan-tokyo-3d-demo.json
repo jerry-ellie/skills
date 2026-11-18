@@ -1,0 +1,30 @@
+{
+  "title": "Tokyo 3-day demo",
+  "subtitle": "Stops with rich data, for warming the research cache (python3 scripts/research.py <this file> --warm)",
+  "days": [
+    {
+      "title": "Asakusa and Skytree",
+      "items": [
+        { "time": "Morning", "place": "Senso-ji", "note": "Temple" },
+        { "time": "Afternoon", "place": "Nakamise", "note": "Shopping street" },
+        { "time": "Evening", "place": "Tokyo Skytree", "note": "City views" }
+      ]
+    },
+    {
+      "title": "Odaiba",
+      "items": [
+        { "time": "Morning", "place": "Odaiba Seaside Park", "note": "Waterfront" },
+        { "time": "Afternoon", "place": "teamLab Planets", "note": "Digital art" },
+        { "time": "Evening", "place": "Gundam Base", "note": "Robots" }
+      ]
+    },
+    {
+      "title": "Harajuku and Shibuya",
+      "items": [
+        { "time": "Morning", "place": "Meiji Shrine", "note": "Forest shrine" },
+        { "time": "Afternoon", "place": "Shibuya Crossing", "note": "Famous crossing" },
+        { "time": "Evening", "place": "Ichiran Ramen", "note": "Ramen" }
+      ]
+    }
+  ]
+}
